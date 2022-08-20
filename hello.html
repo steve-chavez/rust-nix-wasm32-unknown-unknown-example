@@ -1,0 +1,28 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta  charset="utf-8">
+    <title>Hello</title>
+  </head>
+  <body>
+    <script>
+      var memory = new WebAssembly.Memory({initial:1});
+
+      var  importObject = {
+        js : {
+          mem:  memory
+        }
+      };
+
+       WebAssembly.instantiateStreaming(fetch('result/src/gcd_bg.wasm'), importObject)
+      .then(obj  => {
+        const res1 = obj.instance.exports.plus(4, 9);
+        const res2 = obj.instance.exports.gcd(15,225);
+        console.log(res1);
+        console.log(res2);
+        document.body.textContent = `plus: ${res1}, gcd: ${res2}`;
+      });
+
+    </script>
+  </body>
+</html>
