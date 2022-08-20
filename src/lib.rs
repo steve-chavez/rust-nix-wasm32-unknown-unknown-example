@@ -15,7 +15,7 @@ use wasm_bindgen::prelude::*;
 /// assert_eq!(gcd(-48, 18), 6);
 /// ```
 #[wasm_bindgen]
-pub fn gcd(a: i64, b: i64) -> u64 {
+pub fn gcd(a: i32, b: i32) -> u32 {
     if b == 0 {
         a.unsigned_abs()
     } else {
